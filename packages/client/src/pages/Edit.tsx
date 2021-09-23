@@ -12,17 +12,12 @@ import { MemoInput } from '../types/memo'
 
 function Edit(): ReactElement {
   const { id } = useParams<MemoParamType>()
-  if (!id) {
-    return <Error />
-  }
-  const { data } = useMemoItem(id)
-  if (!data) {
-    return <Error />
-  }
+  const { data } = useMemoItem(id ?? '')
+
   const [{ title, body, tags }, onChange] = useInput<MemoInput>({
-    title: data.title,
-    body: data.body,
-    tags: data.tags.toString(),
+    title: data?.title ?? '',
+    body: data?.body ?? '',
+    tags: data?.tags.toString() ?? '',
   })
 
   const { refetch } = useMemoList()
@@ -42,6 +37,14 @@ function Edit(): ReactElement {
   const handleCancel = (): void => {
     history.goBack()
   }
+
+  if (!id) {
+    return <Error />
+  }
+  if (!data) {
+    return <Error />
+  }
+
   return (
     <div>
       <div>

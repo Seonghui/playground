@@ -13,10 +13,8 @@ function MemoItem(): ReactElement {
   const { mutate } = useDeleteMemo()
   const history = useHistory()
   const { refetch } = useMemoList()
-  if (!id) {
-    return <Error />
-  }
-  const { data, isLoading, error } = useMemoItem(id)
+
+  const { data, isLoading, error } = useMemoItem(id ?? '')
   if (isLoading) {
     return <Loading />
   }
@@ -34,6 +32,10 @@ function MemoItem(): ReactElement {
 
   const handleClickEdit = (): void => {
     history.push(`/memo/${id}/edit`)
+  }
+
+  if (!id) {
+    return <Error />
   }
 
   return (
