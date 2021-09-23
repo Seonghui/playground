@@ -7,8 +7,8 @@ import Button from '../components/Button'
 import { MemoParamType } from '../types/router'
 import Error from '../components/Error'
 import useMemoItem from '../hooks/useMemoItem'
-import { MemoInput } from '../types/memo'
 import useUpdateMemo from '../hooks/useUpdateMemo'
+import { MemoInput } from '../types/memo'
 
 function Edit(): ReactElement {
   const { id } = useParams<MemoParamType>()

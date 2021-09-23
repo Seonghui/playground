@@ -1,30 +1,30 @@
 import instance from './index'
-import { Memo, MemoInput } from '../types/memo'
+import { Memo, MemoResponse } from '../types/memo'
 
 const ENDPOINT = 'memo'
 
 export const memoApi = {
-  all: async (): Promise<Memo[]> => {
+  all: async (): Promise<MemoResponse[]> => {
     return await instance.get(`/${ENDPOINT}`).then((response) => response.data)
   },
-  memo: async (id: string): Promise<Memo> => {
+  memo: async (id: string): Promise<MemoResponse> => {
     return await instance
       .get(`/${ENDPOINT}/${id}`)
       .then((response) => response.data)
   },
-  create: async (params: MemoInput): Promise<Memo> => {
+  create: async (params: Memo): Promise<MemoResponse> => {
     return await instance
       .post(`/${ENDPOINT}`, params)
       .then((response) => response.data)
   },
-  delete: async (id: string): Promise<Memo> => {
+  delete: async (id: string): Promise<MemoResponse> => {
     return await instance
       .delete(`/${ENDPOINT}/${id}`)
       .then((response) => response.data)
   },
-  update: async (params: Memo): Promise<Memo> => {
+  update: async (params: MemoResponse): Promise<MemoResponse> => {
     return await instance
-      .put(`/${ENDPOINT}/${params.id}`, params)
+      .put(`/${ENDPOINT}/${params.id.toString()}`, params)
       .then((response) => response.data)
   },
 }

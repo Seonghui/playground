@@ -2,6 +2,9 @@
   "name": "playground",
   "version": "0.1.0",
   "private": true,
+   "workspaces": [
+    "packages/*"
+  ],
   "dependencies": {
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",

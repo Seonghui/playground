@@ -1,11 +1,11 @@
 import { useQuery, UseQueryResult } from 'react-query'
-import { Memo } from '../types/memo'
+import { MemoResponse } from '../types/memo'
 import { memoApi } from '../apis/memo'
 
-type UseMemoList = UseQueryResult<Memo[], Error>
+type UseMemoList = UseQueryResult<MemoResponse[], Error>
 
 function useMemoList(): UseMemoList {
-  const queryResult = useQuery<Memo[], Error>(
+  const queryResult = useQuery<MemoResponse[], Error>(
     ['memo', 'all'],
     async () => await memoApi.all(),
   )

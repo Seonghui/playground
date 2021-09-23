@@ -1,11 +1,12 @@
 import { useMutation, UseMutationResult } from 'react-query'
 import { memoApi } from '../apis/memo'
-import { Memo, MemoInput } from '../types/memo'
+import { MemoResponse } from '../types/memo'
 
-type UseCreateMemo = UseMutationResult<Memo, Error>
+type UseCreateMemo = UseMutationResult<MemoResponse, Error>
 function useCreateMemo(): UseCreateMemo {
-  const mutationResult = useMutation<Memo, Error, any, any>(
-    async (params: MemoInput): Promise<Memo> => await memoApi.create(params),
+  const mutationResult = useMutation<MemoResponse, Error, any, any>(
+    async (params: MemoResponse): Promise<MemoResponse> =>
+      await memoApi.create(params),
   )
   return {
     ...mutationResult,
