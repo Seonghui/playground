@@ -1,53 +1,137 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { ButtonHTMLAttributes } from 'react'
-import { colors } from '../../styles/colors'
+import styled from '@emotion/styled'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
+import { COLORS } from '../../styles/colors'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** 버튼 안의 내용 */
-  children: React.ReactNode
-  theme?: 'primary' | 'default' | 'text' | 'link'
+  children: ReactNode
+  variant?: 'primary' | 'default' | 'text' | 'link'
+  icon?: ReactNode
+  size?: 'small' | 'default' | 'large'
+  disabled?: boolean
+  block?: boolean
 }
 
-/** `Button` 컴포넌트는 어떠한 작업을 트리거 할 때 사용합니다.  */
-const Button = ({ children, theme = 'primary', ...props }: ButtonProps) => {
-  return (
-    <button css={[style, themes[theme]]} {...props}>
-      {children}
-    </button>
-  )
+const Styled = {
+  button: styled.button<ButtonProps>`
+    ${({ block }) =>
+      block &&
+      css`
+        width: 100%;
+      `}
+  `,
 }
 
 const style = css`
   outline: none;
   border: none;
   box-sizing: border-box;
-  height: 2rem;
-  font-size: 0.875rem;
-  padding: 0.5rem 1rem;
-  background: #20c997;
-  color: white;
-  border-radius: 0.25rem;
-  line-height: 1;
-  font-weight: 600;
-  &:focus {
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-  }
-  &:hover {
-    background: #38d9a9;
-  }
-  &:active {
-    background: #12b886;
-  }
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+  background-color: transparent;
+  border: none;
+  outline: 0;
 `
 
-const themes = {
+const variants = {
   primary: css`
-    background-color: ${colors.primary};
+    background-color: ${COLORS.blue_6};
+    color: ${COLORS.white};
+    &:hover,
+    &:focus {
+      background-color: ${COLORS.blue_5};
+    }
+    &:active {
+      background-color: ${COLORS.blue_7};
+    }
+    &:disabled {
+      cursor: not-allowed;
+      border: 1px solid ${COLORS.gray_3};
+      background-color: ${COLORS.white};
+      color: ${COLORS.gray_6};
+    }
   `,
-  default: css``,
-  text: css``,
-  link: css``,
+  default: css`
+    background-color: ${COLORS.white};
+    border: 1px solid #d9d9d9;
+    &:hover,
+    &:focus {
+      color: ${COLORS.blue_5};
+      border-color: ${COLORS.blue_5};
+    }
+    &:active {
+      color: ${COLORS.blue_7};
+      border-color: ${COLORS.blue_7};
+    }
+    &:disabled {
+      cursor: not-allowed;
+      border: 1px solid ${COLORS.gray_3};
+      background-color: ${COLORS.white};
+      color: ${COLORS.gray_6};
+    }
+  `,
+  text: css`
+    color: ${COLORS.black};
+    &:disabled {
+      cursor: not-allowed;
+      color: ${COLORS.gray_6};
+    }
+  `,
+  link: css`
+    color: ${COLORS.blue_6};
+    &:hover,
+    &:focus {
+      color: ${COLORS.blue_5};
+    }
+    &:active {
+      color: ${COLORS.blue_7};
+    }
+    &:disabled {
+      cursor: not-allowed;
+      color: ${COLORS.gray_6};
+    }
+  `,
+}
+
+const sizes = {
+  small: css`
+    height: 24px;
+    padding: 0 7px;
+    font-size: 14px;
+    border-radius: 2px;
+  `,
+  default: css`
+    height: 32px;
+    padding: 4px 15px;
+    font-size: 14px;
+    border-radius: 2px;
+  `,
+  large: css`
+    height: 40px;
+    padding: 6.4px 15px;
+    font-size: 16px;
+    border-radius: 2px;
+  `,
+}
+
+/** `Button` 컴포넌트는 어떠한 작업을 트리거 할 때 사용합니다.  */
+const Button = ({
+  variant = 'primary',
+  size = 'default',
+  icon,
+  children,
+  ...props
+}: ButtonProps) => {
+  return (
+    <Styled.button css={[style, variants[variant], sizes[size]]} {...props}>
+      {icon && <></>}
+      {children}
+    </Styled.button>
+  )
 }
 
 export default Button

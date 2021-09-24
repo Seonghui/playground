@@ -1,3 +1,26 @@
-export const colors = {
-  primary: '#1890ff',
+export const COLORS = {
+  black: '#000',
+  white: '#fff',
+
+  gray_0: '#f8f9fa',
+  gray_1: '#f1f3f5',
+  gray_2: '#e9ecef',
+  gray_3: '#dee2e6',
+  gray_4: '#ced4da',
+  gray_5: '#adb5bd',
+  gray_6: '#868e96',
+  gray_7: '#495057',
+  gray_8: '#343a40',
+  gray_9: '#212529',
+
+  blue_0: '#e7f5ff',
+  blue_1: '#d0ebff',
+  blue_2: '#a5d8ff',
+  blue_3: '#74c0fc',
+  blue_4: '#4dabf7',
+  blue_5: '#339af0',
+  blue_6: '#228be6',
+  blue_7: '#1c7ed6',
+  blue_8: '#1971c2',
+  blue_9: '#1864ab',
 }
