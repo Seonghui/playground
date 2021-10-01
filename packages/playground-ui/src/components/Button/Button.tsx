@@ -12,6 +12,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'small' | 'default' | 'large'
   disabled?: boolean
   block?: boolean
+  shape?: 'default' | 'circle' | 'round'
 }
 
 const Styled = {
@@ -21,6 +22,13 @@ const Styled = {
       css`
         width: 100%;
       `}
+  `,
+  iconWrap: styled.div`
+    display: inline-block;
+    > svg {
+      width: 1rem;
+      padding-right: 0.5rem;
+    }
   `,
 }
 
@@ -118,17 +126,58 @@ const sizes = {
   `,
 }
 
+const shapes = {
+  default: css``,
+  circle: css`
+    border-radius: 50%;
+  `,
+  round: css`
+    border-radius: 16px;
+  `,
+}
+
+const iconOnlyStyle = css`
+  padding: 0;
+  svg {
+    margin: 0;
+    padding: 0;
+  }
+`
+
+const iconOnlySizes = {
+  small: css`
+    width: 24px;
+  `,
+  default: css`
+    width: 32px;
+  `,
+  large: css`
+    width: 40px;
+  `,
+}
+
 /** `Button` 컴포넌트는 어떠한 작업을 트리거 할 때 사용합니다.  */
 const Button = ({
   variant = 'primary',
   size = 'default',
+  shape = 'default',
   icon,
   children,
   ...props
 }: ButtonProps) => {
+  const iconOnly = !children
   return (
-    <Styled.button css={[style, variants[variant], sizes[size]]} {...props}>
-      {icon && <></>}
+    <Styled.button
+      css={[
+        style,
+        variants[variant],
+        sizes[size],
+        shapes[shape],
+        iconOnly && [iconOnlyStyle, iconOnlySizes[size]],
+      ]}
+      {...props}
+    >
+      <Styled.iconWrap>{icon && icon}</Styled.iconWrap>
       {children}
     </Styled.button>
   )

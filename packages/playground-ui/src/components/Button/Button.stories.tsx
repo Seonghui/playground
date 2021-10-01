@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react'
+import Icon from '../Icon/Icon'
 import Button from './Button'
 
 export default {
@@ -66,3 +67,15 @@ export const linkButton = (args) => {
 }
 
 linkButton.args = { size: 'default', variant: 'link' }
+
+export const iconButton = (args) => {
+  return (
+    <Button {...args} icon={<Icon icon="close" />}>
+      Icon Button
+    </Button>
+  )
+}
+
+export const iconOnlyButton = (args) => {
+  return <Button {...args} icon={<Icon icon="close" />} />
+}
