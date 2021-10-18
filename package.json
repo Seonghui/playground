@@ -7,8 +7,5 @@
   ],
   "repository": "https://github.com/Seonghui/playground.git",
   "author": "Seonghui <stellashyou@gmail.com>",
-  "license": "MIT",
-  "resolutions": {
-    "babel-loader": "8.1.0"
-  }
+  "license": "MIT"
 }

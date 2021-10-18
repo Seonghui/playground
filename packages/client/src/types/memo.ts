@@ -2,6 +2,7 @@ export interface Memo {
   title: string
   body: string
   tags: string[]
+  date: string
 }
 
 export interface MemoInput {
