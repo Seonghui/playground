@@ -1,6 +1,6 @@
 import { useMutation, UseMutationResult } from 'react-query'
-import { memoApi } from '../apis/memo'
-import { Memo, MemoResponse } from '../types/memo'
+import { memoApi } from '../../apis/memo'
+import { Memo, MemoResponse } from '../../types/memo'
 
 type UseUpdateMemo = UseMutationResult<Memo, Error>
 function useUpdateMemo(): UseUpdateMemo {

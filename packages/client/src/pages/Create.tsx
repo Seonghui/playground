@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import useInput from '../hooks/useInputs'
-import useCreateMemo from '../hooks/useCreateMemo'
+import useCreateMemo from '../hooks/apis/useCreateMemo'
 import { useHistory } from 'react-router-dom'
-import useMemoList from '../hooks/useMemoList'
+import useMemoList from '../hooks/apis/useMemoList'
 
 function Create(): ReactElement {
   const [{ title, body, tags }, onChange] = useInput({

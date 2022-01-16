@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { MemoParamType } from '../types/router'
-import useMemoItem from '../hooks/useMemoItem'
+import useMemoItem from '../hooks/apis/useMemoItem'
 import Error from '../components/Error'
 import Loading from '../components/Loading'
 import Button from '../components/Button'
-import useDeleteMemo from '../hooks/useDeleteMemo'
-import useMemoList from '../hooks/useMemoList'
+import useDeleteMemo from '../hooks/apis/useDeleteMemo'
+import useMemoList from '../hooks/apis/useMemoList'
 
 function MemoItem(): ReactElement {
   const { id } = useParams<MemoParamType>()

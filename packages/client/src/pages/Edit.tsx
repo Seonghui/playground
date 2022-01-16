@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react'
 import useInput from '../hooks/useInputs'
-import useMemoList from '../hooks/useMemoList'
+import useMemoList from '../hooks/apis/useMemoList'
 import { useHistory, useParams } from 'react-router-dom'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import { MemoParamType } from '../types/router'
 import Error from '../components/Error'
-import useMemoItem from '../hooks/useMemoItem'
-import useUpdateMemo from '../hooks/useUpdateMemo'
+import useMemoItem from '../hooks/apis/useMemoItem'
+import useUpdateMemo from '../hooks/apis/useUpdateMemo'
 import { MemoInput } from '../types/memo'
 
 function Edit(): ReactElement {

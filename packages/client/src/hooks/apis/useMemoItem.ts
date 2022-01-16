@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from 'react-query'
-import { MemoResponse } from '../types/memo'
-import { memoApi } from '../apis/memo'
+import { MemoResponse } from '../../types/memo'
+import { memoApi } from '../../apis/memo'
 
 type UseMemoItem = UseQueryResult<MemoResponse, Error>
 

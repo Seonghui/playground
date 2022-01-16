@@ -9,16 +9,16 @@ function App(): ReactElement {
   return (
     <Router>
       <Switch>
-        <Route path="/memo" exact>
+        <Route path="/memos" exact>
           <Memo />
         </Route>
-        <Route path="/memo/create" exact>
+        <Route path="/memos/create" exact>
           <Create />
         </Route>
-        <Route path="/memo/:id/edit" exact>
+        <Route path="/memos/:id/edit" exact>
           <Edit />
         </Route>
-        <Route path="/memo/:id">
+        <Route path="/memos/:id">
           <MemoItem />
         </Route>
       </Switch>

@@ -1,6 +1,6 @@
 import { useMutation, UseMutationResult } from 'react-query'
-import { memoApi } from '../apis/memo'
-import { MemoResponse } from '../types/memo'
+import { memoApi } from '../../apis/memo'
+import { MemoResponse } from '../../types/memo'
 
 type UseDeleteMemo = UseMutationResult<MemoResponse, Error>
 function useDeleteMemo(): UseDeleteMemo {
