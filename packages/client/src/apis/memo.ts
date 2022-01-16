@@ -1,11 +1,16 @@
 import instance from './index'
-import { Memo, MemoResponse } from '../types/memo'
+import { Memo, MemoResponse, TotalMemoResponse } from '../types/memo'
 
 const ENDPOINT = 'memo'
 
 export const memoApi = {
-  all: async (): Promise<MemoResponse[]> => {
-    return await instance.get(`/${ENDPOINT}`).then((response) => response.data)
+  all: async (): Promise<TotalMemoResponse> => {
+    return await instance.get(`/${ENDPOINT}?_page=1`).then((response) => {
+      return {
+        total: response.headers['x-total-count'],
+        memos: response.data,
+      }
+    })
   },
   memo: async (id: string): Promise<MemoResponse> => {
     return await instance

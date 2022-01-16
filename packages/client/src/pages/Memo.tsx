@@ -35,7 +35,7 @@ function Memo(): ReactElement {
             제목 <Button onClick={handleClickAddMemo}>메모 추가</Button>
           </div>
         }
-        dataSource={data}
+        dataSource={data?.memos}
         renderItem={(item) => renderMemoList(item)}
       />
     </AppLayout>

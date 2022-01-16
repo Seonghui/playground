@@ -14,3 +14,8 @@ export interface MemoInput {
 export interface MemoResponse extends Memo {
   id: number | string
 }
+
+export interface TotalMemoResponse {
+  total: string
+  memos: MemoResponse[]
+}
