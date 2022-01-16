@@ -4,10 +4,11 @@ import { memoApi } from '../apis/memo'
 
 type UseMemoList = UseQueryResult<TotalMemoResponse, Error>
 
-function useMemoList(): UseMemoList {
+function useMemoList(page: number = 1): UseMemoList {
   const queryResult = useQuery<TotalMemoResponse, Error>(
-    ['memo', 'all'],
-    async () => await memoApi.all(),
+    ['memos', page],
+    async () => await memoApi.all(page),
+    { keepPreviousData: true },
   )
   return { ...queryResult }
 }

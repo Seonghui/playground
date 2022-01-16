@@ -16,6 +16,6 @@ export interface MemoResponse extends Memo {
 }
 
 export interface TotalMemoResponse {
-  total: string
+  total: number
   memos: MemoResponse[]
 }

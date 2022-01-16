@@ -4,13 +4,18 @@ import { Memo, MemoResponse, TotalMemoResponse } from '../types/memo'
 const ENDPOINT = 'memo'
 
 export const memoApi = {
-  all: async (): Promise<TotalMemoResponse> => {
-    return await instance.get(`/${ENDPOINT}?_page=1`).then((response) => {
-      return {
-        total: response.headers['x-total-count'],
-        memos: response.data,
-      }
-    })
+  all: async (
+    pages: number = 1,
+    limit: number = 5,
+  ): Promise<TotalMemoResponse> => {
+    return await instance
+      .get(`/${ENDPOINT}?_page=${pages}&_limit=${limit}`)
+      .then((response) => {
+        return {
+          total: Number(response.headers['x-total-count']),
+          memos: response.data,
+        }
+      })
   },
   memo: async (id: string): Promise<MemoResponse> => {
     return await instance

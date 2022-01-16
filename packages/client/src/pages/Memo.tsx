@@ -1,14 +1,15 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useState } from 'react'
 import useMemoList from '../hooks/useMemoList'
 import Loading from '../components/Loading'
 import { Link, useHistory } from 'react-router-dom'
-import { List, Button } from 'antd'
+import { List, Button, Pagination } from 'antd'
 import { MemoResponse } from '../types/memo'
 import AppLayout from '../components/Layout/AppLayout'
 
 function Memo(): ReactElement {
   const history = useHistory()
-  const { data, isLoading } = useMemoList()
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const { data, isLoading } = useMemoList(currentPage)
 
   if (isLoading) {
     return <Loading />
@@ -27,6 +28,11 @@ function Memo(): ReactElement {
     </List.Item>
   )
 
+  const handleChangePagination = (page: number): void => {
+    setCurrentPage(page)
+    history.push(`${history.location.pathname}?page=${page}`)
+  }
+
   return (
     <AppLayout>
       <List
@@ -37,6 +43,13 @@ function Memo(): ReactElement {
         }
         dataSource={data?.memos}
         renderItem={(item) => renderMemoList(item)}
+      />
+      <Pagination
+        defaultCurrent={1}
+        current={currentPage}
+        total={data?.total}
+        defaultPageSize={5}
+        onChange={handleChangePagination}
       />
     </AppLayout>
   )
