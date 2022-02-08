@@ -5,10 +5,8 @@ import ReactQueryProvider from './providers/ReactQueryProvider'
 import 'antd/dist/antd.css'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ReactQueryProvider>
-      <App />
-    </ReactQueryProvider>
-  </React.StrictMode>,
+  <ReactQueryProvider>
+    <App />
+  </ReactQueryProvider>,
   document.getElementById('root'),
 )

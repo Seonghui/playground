@@ -10,6 +10,7 @@ import useMemoList from '../../hooks/apis/useMemoList'
 import AppLayout from '../../components/Layout/AppLayout'
 import { Button, Divider, Space, Tag, Typography } from 'antd'
 import { css } from '@emotion/react'
+import ReactQuill from 'react-quill'
 
 const styles = {
   tagWrap: css`
@@ -64,7 +65,7 @@ function MemoItem(): ReactElement {
     <AppLayout>
       <Title level={2}>{data?.title}</Title>
       <Divider />
-      <div>{data?.body}</div>
+      <ReactQuill value={data?.body} readOnly={true} theme={'bubble'} />
       <div css={styles.tagWrap}>
         <Text type="secondary">태그</Text>
         <div css={styles.tagList}>

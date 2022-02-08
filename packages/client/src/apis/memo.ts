@@ -9,7 +9,7 @@ export const memoApi = {
     limit: number = 5,
   ): Promise<TotalMemoResponse> => {
     return await instance
-      .get(`/${ENDPOINT}?_page=${pages}&_limit=${limit}`)
+      .get(`/${ENDPOINT}?_page=${pages}&_limit=${limit}&_order=desc&_sort=id`)
       .then((response) => {
         return {
           total: Number(response.headers['x-total-count']),
