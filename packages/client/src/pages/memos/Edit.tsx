@@ -1,14 +1,15 @@
 import React, { ReactElement } from 'react'
-import useInput from '../hooks/useInputs'
-import useMemoList from '../hooks/apis/useMemoList'
+import useInput from '../../hooks/useInputs'
+import useMemoList from '../../hooks/apis/useMemoList'
 import { useHistory, useParams } from 'react-router-dom'
-import Input from '../components/Input'
-import Button from '../components/Button'
-import { MemoParamType } from '../types/router'
-import Error from '../components/Error'
-import useMemoItem from '../hooks/apis/useMemoItem'
-import useUpdateMemo from '../hooks/apis/useUpdateMemo'
-import { MemoInput } from '../types/memo'
+import Input from '../../components/Input'
+import Button from '../../components/Button'
+import { MemoParamType } from '../../types/router'
+import Error from '../../components/Error'
+import useMemoItem from '../../hooks/apis/useMemoItem'
+import useUpdateMemo from '../../hooks/apis/useUpdateMemo'
+import { MemoInput } from '../../types/memo'
+import AppLayout from '../../components/Layout/AppLayout'
 
 function Edit(): ReactElement {
   const { id } = useParams<MemoParamType>()
@@ -46,7 +47,7 @@ function Edit(): ReactElement {
   }
 
   return (
-    <div>
+    <AppLayout>
       <div>
         제목
         <Input value={title} onChange={onChange} name="title" />
@@ -63,7 +64,7 @@ function Edit(): ReactElement {
         <Button onClick={handleSubmit}>확인</Button>
         <Button onClick={handleCancel}>취소</Button>
       </div>
-    </div>
+    </AppLayout>
   )
 }
 

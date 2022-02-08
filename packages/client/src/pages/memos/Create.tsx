@@ -1,10 +1,11 @@
 import React, { ReactElement } from 'react'
-import Input from '../components/Input'
-import Button from '../components/Button'
-import useInput from '../hooks/useInputs'
-import useCreateMemo from '../hooks/apis/useCreateMemo'
+import Input from '../../components/Input'
+import Button from '../../components/Button'
+import useInput from '../../hooks/useInputs'
+import useCreateMemo from '../../hooks/apis/useCreateMemo'
 import { useHistory } from 'react-router-dom'
-import useMemoList from '../hooks/apis/useMemoList'
+import useMemoList from '../../hooks/apis/useMemoList'
+import AppLayout from '../../components/Layout/AppLayout'
 
 function Create(): ReactElement {
   const [{ title, body, tags }, onChange] = useInput({
@@ -30,7 +31,7 @@ function Create(): ReactElement {
     history.goBack()
   }
   return (
-    <div>
+    <AppLayout>
       <div>
         제목
         <Input value={title} onChange={onChange} name="title" />
@@ -47,7 +48,7 @@ function Create(): ReactElement {
         <Button onClick={handleSubmit}>확인</Button>
         <Button onClick={handleCancel}>취소</Button>
       </div>
-    </div>
+    </AppLayout>
   )
 }
 
