@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import React, { ReactElement, useState } from 'react'
-import Button from '../../components/Button'
 import useInput from '../../hooks/useInputs'
 import useCreateMemo from '../../hooks/apis/useCreateMemo'
 import { useHistory } from 'react-router-dom'
@@ -8,7 +7,8 @@ import useMemoList from '../../hooks/apis/useMemoList'
 import AppLayout from '../../components/Layout/AppLayout'
 import Editor from '../../components/Editor'
 import { css } from '@emotion/react'
-import { Col, Input, Row } from 'antd'
+import { Button, Col, Input, Row, Space } from 'antd'
+import EditableTagGroup from '../../components/EditableTagGroup'
 
 const styles = {
   row: css`
@@ -17,13 +17,17 @@ const styles = {
   editorWrap: css`
     height: 343px;
   `,
+  buttonWrap: css`
+    display: flex;
+    justify-content: end;
+  `,
 }
 
 function Create(): ReactElement {
+  const [tags, setTags] = useState<string[]>([])
   const [body, setBody] = useState<string>('')
-  const [{ title, tags }, onChange] = useInput({
+  const [{ title }, onChange] = useInput({
     title: '',
-    tags: '',
   })
 
   const { refetch } = useMemoList()
@@ -31,8 +35,7 @@ function Create(): ReactElement {
   const { mutate } = useCreateMemo()
 
   const handleSubmit = async (): Promise<void> => {
-    const tagArray = tags.split(',')
-    mutate({ title, body, tags: tagArray })
+    mutate({ title, body, tags })
     await refetch().then((result) => {
       if (result.status === 'success') {
         history.push('/memos')
@@ -69,13 +72,17 @@ function Create(): ReactElement {
       <Row align="middle" css={styles.row}>
         <Col span={2}>태그</Col>
         <Col span={22}>
-          <Input value={tags} onChange={onChange} name="tags" />
+          <EditableTagGroup getTags={(tags) => setTags(tags)} />
         </Col>
       </Row>
 
-      <div>
-        <Button onClick={handleSubmit}>확인</Button>
-        <Button onClick={handleCancel}>취소</Button>
+      <div css={styles.buttonWrap}>
+        <Space size={8}>
+          <Button onClick={handleSubmit} type="primary">
+            확인
+          </Button>
+          <Button onClick={handleCancel}>취소</Button>
+        </Space>
       </div>
     </AppLayout>
   )
