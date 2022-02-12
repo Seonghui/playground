@@ -9,6 +9,7 @@ import AppLayout from '../../components/Layout/AppLayout'
 import useQueryString from '../../hooks/useQueryString'
 import { pageMemoCreate } from '../../routes/memo'
 import { css } from '@emotion/react'
+import { format } from 'date-fns'
 
 const styles = {
   bottom: css`
@@ -47,6 +48,9 @@ function Memo(): ReactElement {
       dataIndex: 'date',
       key: 'date',
       width: 200,
+      render: (title: string) => {
+        return title && <span>{format(new Date(title), 'yyyy.MM.dd')}</span>
+      },
     },
   ]
 

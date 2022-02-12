@@ -9,6 +9,7 @@ import Editor from '../../components/Editor'
 import { css } from '@emotion/react'
 import { Button, Col, Input, Row, Space } from 'antd'
 import EditableTagGroup from '../../components/EditableTagGroup'
+import { format } from 'date-fns'
 
 const styles = {
   row: css`
@@ -35,7 +36,12 @@ function Create(): ReactElement {
   const { mutate } = useCreateMemo()
 
   const handleSubmit = async (): Promise<void> => {
-    mutate({ title, body, tags })
+    mutate({
+      title,
+      body,
+      tags,
+      date: format(new Date(), 'yyyy-MM-dd'),
+    })
     await refetch().then((result) => {
       if (result.status === 'success') {
         history.push('/memos')
